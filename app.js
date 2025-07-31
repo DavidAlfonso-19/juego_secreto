@@ -1,6 +1,7 @@
 let numeroSecreto = 0; 
 let contador = 0;
 let intentos = 3;
+let list = [];
 
 // Iniciar los valores del juego
 condicionesIniciales();
@@ -74,21 +75,28 @@ function asignarTexto(elemento, texto){
 }
 
 function generarNumeroAleatorio(numeroMaximo = 10){
-    // Generar número random
-    let numeroAleatorio = Math.floor(Math.random() * numeroMaximo)+1;
-    // Definir lista vacia
-    let list = [];
+    let numeroMayor = numeroMaximo
 
+    console.log(list);
+
+    // Verificar que la lista de números no este llena
+    if (list.length == numeroMayor){
+        list = [];
+    }
+    
+    // Generar número random
+    let numeroAleatorio = Math.floor(Math.random() * numeroMayor)+1;
+    console.log(numeroAleatorio);
+    
     // Si el numero aleatorio ya fue generado aplicamos recursividad
     if (list.includes(numeroAleatorio)){
-        generarNumeroAleatorio()
+        return generarNumeroAleatorio()
     }
     else {
         // sino está, lo agregamos a la lista y lo retornamos
         list.push(numeroAleatorio);
         return numeroAleatorio;
-    }
-
+    }    
 }
 
 function limpiarCaja(){
